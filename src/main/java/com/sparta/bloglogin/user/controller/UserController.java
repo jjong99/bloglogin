@@ -5,6 +5,7 @@ import com.sparta.bloglogin.user.dto.LoginRequestDto;
 import com.sparta.bloglogin.user.dto.SignupRequestDto;
 import com.sparta.bloglogin.user.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,8 +26,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ApiResult login(@RequestBody LoginRequestDto requestDto, HttpServletRequest request) {
-        userService.login(requestDto, request);
+    public ApiResult login(@RequestBody LoginRequestDto requestDto, HttpServletResponse response) {
+        userService.login(requestDto, response);
         return new ApiResult("로그인 성공", HttpStatus.OK.value());
     }
 }
