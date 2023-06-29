@@ -1,6 +1,7 @@
 package com.sparta.bloglogin.post.entity;
 
 
+import com.sparta.bloglogin.comment.entity.Comment;
 import com.sparta.bloglogin.common.entity.Timestamped;
 import com.sparta.bloglogin.post.dto.PostRequestDto;
 import com.sparta.bloglogin.user.entity.User;
@@ -8,6 +9,9 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -17,7 +21,7 @@ public class Post extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="post_id")
+    @Column(name="postId", nullable = false)
     private Long postId;
 
     @Column(name = "title", nullable = false)
@@ -28,8 +32,11 @@ public class Post extends Timestamped {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="username")
     private User user;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
+    private List<Comment> commentList = new ArrayList<>();
 
     /**
      * Initializer using Builder.
