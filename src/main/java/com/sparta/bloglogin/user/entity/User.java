@@ -11,10 +11,9 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor
-@Table(name = "users")
+@Table
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "username", nullable = false)
     private String username;
 

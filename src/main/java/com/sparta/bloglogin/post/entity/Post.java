@@ -16,12 +16,12 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor
-@Table(name = "posts")
+@Table
 public class Post extends Timestamped {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="postId", nullable = false)
+    @Column(name="post_id", nullable = false)
     private Long postId;
 
     @Column(name = "title", nullable = false)
