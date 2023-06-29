@@ -20,6 +20,7 @@ public class PostResponseDto {
     private List<CommentResponseDto> commentList;
 
     public PostResponseDto(Post post) {
+        this.postId = post.getPostId();
         this.title = post.getTitle();
         this.content = post.getContent();
         this.username = post.getUser().getUsername();
