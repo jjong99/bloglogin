@@ -1,5 +1,7 @@
 package com.sparta.bloglogin.post.service;
 
+import com.sparta.bloglogin.comment.dto.CommentResponseDto;
+import com.sparta.bloglogin.comment.entity.Comment;
 import com.sparta.bloglogin.common.code.HanghaeBlogErrorCode;
 import com.sparta.bloglogin.common.exception.HanghaeBlogException;
 import com.sparta.bloglogin.common.jwt.JwtUtil;
@@ -36,7 +38,8 @@ public class PostService {
 
     @Transactional(readOnly = true)
     public List<PostResponseDto> getPosts() {
-        return postRepository.findAll().stream().map(PostResponseDto::new).toList();
+        return postRepository.findAllByOrderByModifiedAtDesc().stream().map(PostResponseDto::new).toList();
+
     }
 
 

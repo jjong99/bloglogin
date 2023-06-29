@@ -17,7 +17,7 @@ public class PostResponseDto {
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 
-    private List<CommentResponseDto> commentResponseDtoList = new ArrayList<>();
+    private List<CommentResponseDto> commentList;
 
     public PostResponseDto(Post post) {
         this.title = post.getTitle();
@@ -25,9 +25,7 @@ public class PostResponseDto {
         this.username = post.getUser().getUsername();
         this.createdAt = post.getCreatedAt();
         this.modifiedAt = post.getModifiedAt();
-
-        List<CommentResponseDto> commentResponseDtos = new ArrayList<>();
-        
+        this.commentList = post.getCommentList().stream().map(CommentResponseDto::new).toList();
     }
 
 
