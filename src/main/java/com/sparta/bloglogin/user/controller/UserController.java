@@ -6,6 +6,7 @@ import com.sparta.bloglogin.user.dto.SignupRequestDto;
 import com.sparta.bloglogin.user.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,7 @@ public class UserController {
 
     private final UserService userService;
     @PostMapping("/signup")
-    public ApiResult signup(@RequestBody SignupRequestDto requestDto) {
+    public ApiResult signup(@Valid @RequestBody SignupRequestDto requestDto) {
         userService.signup(requestDto);
         return new ApiResult("회원가입 성공", HttpStatus.OK.value());
     }

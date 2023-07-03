@@ -28,6 +28,8 @@ public class CommentController {
         return commentService.updateComment(id, requestDto, request);
     }
 
+
+
     @DeleteMapping("/comment/{id}")
     public ApiResult deleteComment(@PathVariable Long id, HttpServletRequest request) {
         return commentService.deleteComment(id, request);
